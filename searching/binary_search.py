@@ -1,7 +1,9 @@
-ar = list(range(0,100))
+import timeit
+
+ar = list(range(0,10000))
 l = 0
 r = len(ar)-1
-t = 101 #target
+t = 77 #target
 i = 0
 
 def binary_search(l=l,r=r):
@@ -20,4 +22,10 @@ def binary_search(l=l,r=r):
     elif ar[m] < t:
         binary_search(l=m+1, r=r)
 
-binary_search()
+# 100 - 0.000103236
+# 1000 - 0.000124602
+# 10000 - 0.000122547
+# 100000 - 0.00019446199
+
+elapsed_time = timeit.timeit(binary_search,number=1)
+print(elapsed_time)

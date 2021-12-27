@@ -2,7 +2,7 @@ import random
 import timeit
 
 # ar = [random.randint(0,i) for i in range(0,10000)]
-ar = [4,2,6,7,9,0,1,5]
+ar = [4,2,6,7,9,0,1,5,3,8,6,5]
 # print(ar)
 
 def bubble_sort():
@@ -71,8 +71,15 @@ def merge_lists(left_sublist,right_sublist):
             result.append(right_sublist[j])
             j += 1
     #concatenate the rest of the left and right sublists
+    print('****initial result****')
+    print(f'result:{result}')
+    print(f'left_sublist:{left_sublist[i:]}')
+    print(f'right_sublist:{right_sublist[j:]}')
+
     result += left_sublist[i:]
     result += right_sublist[j:]
+
+    print(f'****returned result:{result}')
 
     return result
 
@@ -83,13 +90,16 @@ def merge_sort(input_list):
     else:
         #split the lists into two sublists and recursively split sublists
         midpoint = len(input_list)//2
+        print(f'left_sublist:{input_list[:midpoint]}')
         left_sublist = merge_sort(input_list[:midpoint])
+        print(f'right_sublist:{input_list[midpoint:]}')
         right_sublist = merge_sort(input_list[midpoint:])
         #return the merged list using the merge_list function above
+        print(f'merge lists:left_sublist:{left_sublist},right_sublist:{right_sublist}')
         return merge_lists(left_sublist,right_sublist)
 
 # 100 - 0.0003791959024965763
 # 1000 - 0.005112813087180257
 # 10000 - 0.12110225507058203
-# elapsed_time = timeit.timeit(stmt="merge_sort(ar)",number=1,globals=globals())
-# print(elapsed_time)
+elapsed_time = timeit.timeit(stmt="merge_sort(ar)",number=1,globals=globals())
+print(elapsed_time)

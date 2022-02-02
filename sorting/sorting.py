@@ -1,8 +1,8 @@
 import random
 import timeit
 
-# ar = [random.randint(0,i) for i in range(0,10000)]
-ar = [4,2,6,7,9,0,1,5,3,8,6,5]
+ar = [random.randint(0,i) for i in range(0,10000)]
+# ar = [4,2,6,7,9,0,1,5,3,8,6,5]
 # print(ar)
 
 def bubble_sort():
@@ -101,5 +101,41 @@ def merge_sort(input_list):
 # 100 - 0.0003791959024965763
 # 1000 - 0.005112813087180257
 # 10000 - 0.12110225507058203
-elapsed_time = timeit.timeit(stmt="merge_sort(ar)",number=1,globals=globals())
-print(elapsed_time)
+# elapsed_time = timeit.timeit(stmt="merge_sort(ar)",number=1,globals=globals())
+# print(elapsed_time)
+
+
+
+# https://www.educative.io/edpresso/how-to-implement-quicksort-in-python
+def quick_sort(arr):
+    elements = len(arr)
+
+    # Base case
+    if elements < 2:
+        return arr
+
+    current_position = 0  # Position of the partitioning element
+
+    for i in range(1, elements):  # Partitioning loop
+        if arr[i] <= arr[0]:
+            current_position += 1
+            temp = arr[i]
+            arr[i] = arr[current_position]
+            arr[current_position] = temp
+
+    temp = arr[0]
+    arr[0] = arr[current_position]
+    arr[current_position] = temp  # Brings pivot to it's appropriate position
+
+    left = quick_sort(arr[0:current_position])  # Sorts the elements to the left of pivot
+    right = quick_sort(arr[current_position + 1:elements])  # sorts the elements to the right of pivot
+
+    arr = left + [arr[current_position]] + right  # Merging everything together
+
+    return arr
+
+# 100 - 0.0003042519965674728
+# 1000 - 0.004059301980305463
+# 10000 - 0.052230767003493384
+# elapsed_time = timeit.timeit(stmt="quick_sort(ar)",number=1,globals=globals())
+# print(elapsed_time)

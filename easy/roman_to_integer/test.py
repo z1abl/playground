@@ -23,6 +23,3 @@ class TestRomanToInteger(unittest.TestCase):
         self.assertEqual(romanToIntElegant('MCMXCIV'), 1994)
         self.assertEqual(romanToIntElegant('LVIII'), 58)
         self.assertEqual(romanToIntElegant('MDCXCV'), 1695)
-
-if __name__ == '__main__':
-    unittest.main()
